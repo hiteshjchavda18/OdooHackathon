@@ -1,1 +1,1 @@
-# OdooHackathon
+# Hackathon Project
