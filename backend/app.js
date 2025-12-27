@@ -6,9 +6,14 @@ const app = express();
 app.use(cors());
 
 const frontendPath = path.join(__dirname, '..', 'frontend');
-console.log('Frontend path:', frontendPath); // Debug: verify path exists
+const stylesPath = path.join(frontendPath, 'User_file', 'styles');
+console.log('Frontend path:', frontendPath);
+console.log('Styles path:', stylesPath); // Debug CSS path
 
-// Serve static files (CSS/JS/images) FIRST
+// Serve CSS FIRST (accessible at /styles/*.css)
+app.use('/styles', express.static(stylesPath));
+
+// Serve other static files (JS/images/etc.)
 app.use(express.static(frontendPath));
 
 // Routes AFTER static middleware

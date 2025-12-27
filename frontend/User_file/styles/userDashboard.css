@@ -57,7 +57,7 @@ body {
 
 /* Main Content Styles */
 .main-content {
-    margin-left: var(--sidebar-width);
+    margin-left: var(--sidebar-width);YYYYYYY
     padding: 30px;
 }
 
@@ -91,7 +91,7 @@ body {
    
     padding-top: 0;
     padding-bottom: 0;
-    background-color: rgb(220, 57, 62);
+    background-color: #04203b;
 }
 .navbar .container-fluid .navbar-brand {
     color: #ffffff;
