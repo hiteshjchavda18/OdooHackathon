@@ -6,116 +6,239 @@
     <title>Asset Management Dashboard</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-   <link rel="stylesheet" href="/styles/ADMINDashboard.css">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+        .sidebar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 240px;
+            height: 100%;
+            background: #0d1b2a;
+            padding-top: 15px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            padding: 12px 20px;
+            text-decoration: none;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background: #1b263b;
+        }
+        .main-content {
+            margin-left: 240px;
+            padding: 25px;
+            margin-top: 56px;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .stat-card {
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- Top Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Company Name</a>
-        <div class="navbar-nav ms-auto">
-            <span class="nav-item nav-link">Email: info@company.com</span>
-            <span class="nav-item nav-link">Phone: +1 (123) 456-7890</span>
-            <span class="nav-item nav-link">Location: New York, NY</span>
-        </div>
+        <span class="navbar-brand fw-bold">Asset Management System</span>
+        <span class="text-white small">info@company.com | +1 123-456-7890</span>
     </div>
 </nav>
 
-<!-- Sidebar -->
+<!-- SIDEBAR -->
 <div class="sidebar">
-    <a href="#" class="active" data-page="dashboard">Dashboard</a>
-    <a href="#" data-page="equipment">Add Equipment</a>
-    <a href="#" data-page="assets">Add Assets</a>
-    <a href="#" data-page="staff">Manage Staff</a>
-    <a href="#" data-page="maintenance">Maintenance Calendar</a>
-
-    <div class="logout">
-        <button class="btn btn-danger w-100">Logout</button>
-    </div>
+    <a href="#" class="active" data-page="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
+    <a href="#" data-page="equipment"><i class="bi bi-tools"></i> Add Equipment</a>
+    <a href="#" data-page="assets"><i class="bi bi-box-seam"></i> Assets</a>
+    <a href="#" data-page="staff"><i class="bi bi-people"></i> Staff</a>
+    <a href="#" data-page="maintenance"><i class="bi bi-calendar-check"></i> Maintenance</a>
 </div>
 
-<!-- Main Content -->
+<!-- MAIN CONTENT -->
 <div class="main-content">
 
-    <!-- Dashboard -->
+    <!-- DASHBOARD -->
     <div class="page active" id="dashboard">
-        <h1>Dashboard</h1>
-        <div class="row">
+        <h3 class="fw-bold mb-4">Dashboard Overview</h3>
+
+        <div class="row g-4">
             <div class="col-md-4">
-                <div class="metric-box">
-                    <h3>Total Assets Count</h3>
-                    <div class="value">1,250</div>
+                <div class="card stat-card bg-primary p-3">
+                    <h6>Total Assets</h6>
+                    <h2 id="totalAssets">0</h2>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="metric-box">
-                    <h3>Total Investment</h3>
-                    <div class="value">$2,500,000</div>
+                <div class="card stat-card bg-success p-3">
+                    <h6>Total Investment</h6>
+                    <h2>$<span id="totalInvestment">0</span></h2>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="metric-box">
-                    <h3>Monthly Maintenance</h3>
-                    <div class="value">$15,000</div>
+                <div class="card stat-card bg-warning p-3">
+                    <h6>Monthly Maintenance</h6>
+                    <h2>$15K</h2>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Add Equipment -->
+    <!-- ADD EQUIPMENT -->
     <div class="page" id="equipment">
-        <h1>Add Equipment</h1>
-        <form class="w-50">
-            <input type="text" class="form-control mb-3" placeholder="Equipment Name">
-            <input type="number" class="form-control mb-3" placeholder="Cost">
-            <button class="btn btn-primary">Save</button>
-        </form>
+    <h3 class="fw-bold mb-3">Add Equipment</h3>
+
+    <!-- FORM -->
+    <div class="card p-4 mb-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <input type="text" id="assetName" class="form-control" placeholder="Asset Name">
+            </div>
+            <div class="col-md-4">
+                <input type="date" id="purchaseDate" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="companyName" class="form-control" placeholder="Company Name">
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="departmentName" class="form-control" placeholder="Department Name">
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="serialNumber" class="form-control" placeholder="Serial Number">
+            </div>
+            <div class="col-md-4">
+                <select id="category" class="form-select">
+                    <option value="">Select Category</option>
+                    <option>Laptop</option>
+                    <option>Desktop</option>
+                    <option>Monitor</option>
+                    <option>Printer</option>
+                    <option>Router</option>
+                    <option>Switch</option>
+                    <option>Server</option>
+                    <option>UPS</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="number" id="cost" class="form-control" placeholder="Cost">
+            </div>
+        </div>
+
+        <button class="btn btn-primary mt-3" onclick="addEquipment()">Save Equipment</button>
     </div>
 
-    <!-- Add Assets -->
+    <!-- TABLE -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Asset Name</th>
+                <th>Serial</th>
+                <th>Category</th>
+                <th>Department</th>
+                <th>Company</th>
+                <th>Purchase Date</th>
+                <th>Cost</th>
+            </tr>
+        </thead>
+        <tbody id="equipmentTable"></tbody>
+    </table>
+</div>
+    <!-- ASSETS -->
     <div class="page" id="assets">
-        <h1>Add Assets</h1>
-        <p>Asset form goes here...</p>
+        <h3 class="fw-bold">Assets</h3>
+        <p>Assets listing coming soon...</p>
     </div>
 
-    <!-- Manage Staff -->
+    <!-- STAFF -->
     <div class="page" id="staff">
-        <h1>Manage Staff</h1>
-        <p>Staff table goes here...</p>
+        <h3 class="fw-bold">Staff Management</h3>
+        <p>Staff management coming soon...</p>
     </div>
 
-    <!-- Maintenance -->
+    <!-- MAINTENANCE -->
     <div class="page" id="maintenance">
-        <h1>Maintenance Calendar</h1>
-        <p>Maintenance calendar here...</p>
+        <h3 class="fw-bold">Maintenance Calendar</h3>
+        <p>Maintenance calendar coming soon...</p>
     </div>
 
 </div>
 
 <!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    const links = document.querySelectorAll(".sidebar a[data-page]");
-    const pages = document.querySelectorAll(".page");
+    let totalAssets = 0;
+let totalInvestment = 0;
 
-    links.forEach(link => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            links.forEach(l => l.classList.remove("active"));
-            this.classList.add("active");
-
-            const pageId = this.getAttribute("data-page");
-
-            pages.forEach(page => page.classList.remove("active"));
-            document.getElementById(pageId).classList.add("active");
-        });
+// Sidebar navigation
+document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        document.querySelectorAll(".sidebar a").forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        document.getElementById(link.dataset.page).classList.add("active");
     });
+});
+
+// Add Equipment
+function addEquipment() {
+    const asset = assetName.value;
+    const date = purchaseDate.value;
+    const company = companyName.value;
+    const dept = departmentName.value;
+    const serial = serialNumber.value;
+    const cat = category.value;
+    const costVal = parseFloat(cost.value);
+
+    if (!asset || !date || !company || !dept || !serial || !cat || costVal <= 0) {
+        alert("Please fill all fields correctly");
+        return;
+    }
+
+    totalAssets++;
+    totalInvestment += costVal;
+
+    totalAssetsEl = document.getElementById("totalAssets");
+    totalInvestmentEl = document.getElementById("totalInvestment");
+
+    totalAssetsEl.innerText = totalAssets;
+    totalInvestmentEl.innerText = totalInvestment.toLocaleString();
+
+    const row = document.getElementById("equipmentTable").insertRow();
+    row.innerHTML = `
+        <td>${totalAssets}</td>
+        <td>${asset}</td>
+        <td>${serial}</td>
+        <td>${cat}</td>
+        <td>${dept}</td>
+        <td>${company}</td>
+        <td>${date}</td>
+        <td>$${costVal.toLocaleString()}</td>
+    `;
+
+    document.querySelectorAll("#equipment input, #equipment select").forEach(el => el.value = "");
+}
 </script>
 
 </body>

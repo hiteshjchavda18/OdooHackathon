@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+// const connectDB = require('./database/connection');
+// connectDB();
+const routes = require('./routes');
 
 const app = express();
 app.use(cors());
@@ -23,6 +26,22 @@ app.get('/', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(frontendPath, 'User_file', 'userDashboard.html'));
+});
+
+app.get('/dashboard/request', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'User_file', 'request.html'));
+});
+
+app.get('/dashboard/assets', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'User_file', 'assets.html'));
+});
+
+app.get('/dashboard/teams', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'User_file', 'teams.html'));
+});
+
+app.get('/dashboard/maintenance', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'User_file', 'maintenance.html'));
 });
 
 app.get('/admin', (req, res) => {

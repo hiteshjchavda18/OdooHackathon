@@ -1,16 +1,17 @@
 /* CSS Variables for easy customization */
 :root {
-    --sidebar-bg: #343a40;
+    --sidebar-bg: #04203b;
     --sidebar-link-color: #ffffff;
     --sidebar-hover-bg: #495057;
     --main-bg: #ffffff;
-    --metric-box-bg: #f8f9fa;
+    --metric-box-bg: rgb(47, 109, 181);
     --metric-box-border: #dee2e6;
-    --metric-title-color: #495057;
-    --metric-value-color: #007bff;
+    --metric-title-color: #ffffff;
+    --metric-value-color: #eef07e;
     --sidebar-width: 250px;
-    --navbar-height: 56px; /* Approximate height of Bootstrap navbar */
+    --navbar-height: 25px;                                              
     --font-family: Arial, sans-serif;
+    
 }
 
 /* General Body Styles */
@@ -30,7 +31,7 @@ body {
     top: var(--navbar-height); /* Start below the navbar */
     left: 0;
     background-color: var(--sidebar-bg);
-    padding-top: 20px;
+    padding-top: 70px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -53,40 +54,28 @@ body {
     width: 100%;
     padding: 0 15px;
 }
-
-/* Main Content Styles */
-.main-content {
-    margin-left: var(--sidebar-width);
-    padding: 20px;
+.navbar .container-fluid {
+   
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: #033b62;
 }
-
-/* Metric Box Styles */
-.metric-box {
-    background-color: var(--metric-box-bg);
-    border: 1px solid var(--metric-box-border);
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-}
-
-.metric-box:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.metric-box h3 {
-    margin-bottom: 10px;
-    color: var(--metric-title-color);
-}
-
-.metric-box .value {
-    font-size: 2em;
+.navbar .container-fluid .navbar-brand {
+    color: #ffffff;
     font-weight: bold;
-    color: var(--metric-value-color);
 }
-
+.navbar .nav-item{
+    color: #ffffff;
+}
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: var(--navbar-height);
+}
+.navbar .container-fluid {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .sidebar {
