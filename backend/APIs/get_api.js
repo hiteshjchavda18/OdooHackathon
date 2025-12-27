@@ -25,5 +25,3 @@ router.get('/apis/:id', (req, res) => {
         res.status(404).json({ message: 'API not found' });
     }
 });
-
-module.exports = router;

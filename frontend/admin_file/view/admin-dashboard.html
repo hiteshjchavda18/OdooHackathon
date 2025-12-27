@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asset Management Dashboard</title>
+    <title>Asset & Staff Management Dashboard</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -61,7 +61,7 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
-        <span class="navbar-brand fw-bold">Asset Management System</span>
+        <span class="navbar-brand fw-bold">Asset & Staff Management</span>
         <span class="text-white small">info@company.com | +1 123-456-7890</span>
     </div>
 </nav>
@@ -70,9 +70,7 @@
 <div class="sidebar">
     <a href="#" class="active" data-page="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
     <a href="#" data-page="equipment"><i class="bi bi-tools"></i> Add Equipment</a>
-    <!-- <a href="#" data-page="assets"><i class="bi bi-box-seam"></i> Assets</a> -->
-    <a href="#" data-page="staff"><i class="bi bi-people"></i> Staff</a>
-    <a href="#" data-page="maintenance"><i class="bi bi-calendar-check"></i> Maintenance</a>
+    <a href="#" data-page="staff"><i class="bi bi-people"></i> Staff Management</a>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -115,7 +113,7 @@
                                     <th>Category</th>
                                     <th>Department</th>
                                     <th>Company</th>
-                                    <th>Status</th> <!-- New Status Column -->
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody id="pendingTable"></tbody>
@@ -130,32 +128,31 @@
     <div class="page" id="equipment">
         <h3 class="fw-bold mb-3">Add Equipment</h3>
 
-        <!-- FORM -->
         <div class="card p-4 mb-4">
             <div class="row g-3">
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Asset Name <span class="text-danger">*</span></label>
-                    <input type="text" id="assetName" class="form-control" placeholder="Enter asset name" required>
+                    <input type="text" id="assetName" class="form-control" placeholder="Enter asset name">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Purchase Date <span class="text-danger">*</span></label>
-                    <input type="date" id="purchaseDate" class="form-control" required>
+                    <input type="date" id="purchaseDate" class="form-control">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Company Name <span class="text-danger">*</span></label>
-                    <input type="text" id="companyName" class="form-control" placeholder="Enter company name" required>
+                    <input type="text" id="companyName" class="form-control" placeholder="Enter company name">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Department Name <span class="text-danger">*</span></label>
-                    <input type="text" id="departmentName" class="form-control" placeholder="Enter department" required>
+                    <input type="text" id="departmentName" class="form-control" placeholder="Enter department">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Serial Number <span class="text-danger">*</span></label>
-                    <input type="text" id="serialNumber" class="form-control" placeholder="Enter serial number" required>
+                    <input type="text" id="serialNumber" class="form-control" placeholder="Enter serial number">
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Category <span class="text-danger">*</span></label>
-                    <select id="category" class="form-select" required>
+                    <select id="category" class="form-select">
                         <option value="">Select category</option>
                         <option>Laptop</option>
                         <option>Desktop</option>
@@ -170,14 +167,12 @@
                 </div>
                 <div class="col-md-4">
                     <label class="form-label fw-bold">Cost <span class="text-danger">*</span></label>
-                    <input type="number" id="cost" class="form-control" placeholder="Enter cost" required>
+                    <input type="number" id="cost" class="form-control" placeholder="Enter cost">
                 </div>
             </div>
-
             <button class="btn btn-primary mt-4" onclick="addEquipment()">Save Equipment</button>
         </div>
 
-        <!-- TABLE -->
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
@@ -196,33 +191,61 @@
         </table>
     </div>
 
-    <!-- ASSETS -->
-    <div class="page" id="assets">
-        <h3 class="fw-bold">Assets</h3>
-        <p>Assets listing coming soon...</p>
-    </div>
-
-    <!-- STAFF -->
+    <!-- STAFF MANAGEMENT -->
     <div class="page" id="staff">
         <h3 class="fw-bold">Staff Management</h3>
-        <p>Staff management coming soon...</p>
-    </div>
 
-    <!-- MAINTENANCE -->
-    <div class="page" id="maintenance">
-        <h3 class="fw-bold">Maintenance Calendar</h3>
-        <p>Maintenance calendar coming soon...</p>
+        <div class="card p-4 mb-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Team Name *</label>
+                    <input type="text" id="teamName" class="form-control" placeholder="Enter team name">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Category *</label>
+                    <input type="text" id="teamCategory" class="form-control" placeholder="Enter category">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Team Leader *</label>
+                    <input type="text" id="teamLeader" class="form-control" placeholder="Enter leader name">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Team Member *</label>
+                    <input type="text" id="teamMember" class="form-control" placeholder="Enter member name">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Member Role *</label>
+                    <input type="text" id="memberRole" class="form-control" placeholder="Enter member role">
+                </div>
+            </div>
+            <button class="btn btn-primary mt-4" onclick="addStaff()">Add Staff</button>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Team Name</th>
+                    <th>Category</th>
+                    <th>Team Leader</th>
+                    <th>Team Member</th>
+                    <th>Member Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="staffTable"></tbody>
+        </table>
     </div>
 
 </div>
 
-<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 let totalAssets = 0;
 let totalInvestment = 0;
 let editRow = null;
+let staffEditRow = null;
 
 // Sidebar navigation
 document.querySelectorAll(".sidebar a").forEach(link => {
@@ -235,7 +258,7 @@ document.querySelectorAll(".sidebar a").forEach(link => {
     });
 });
 
-// Add / Update Equipment
+// Equipment Functions
 function addEquipment() {
     const asset = assetName.value.trim();
     const date = purchaseDate.value;
@@ -285,7 +308,6 @@ function addEquipment() {
             <button class="btn btn-sm btn-danger" onclick="deleteEquipment(this, ${costVal})">Delete</button>
         </td>
     `;
-
     resetForm();
     updatePendingTable();
 }
@@ -298,11 +320,11 @@ function editEquipment(btn) {
     departmentName.value = editRow.cells[4].innerText;
     companyName.value = editRow.cells[5].innerText;
     purchaseDate.value = editRow.cells[6].innerText;
-    cost.value = editRow.cells[7].innerText.replace("$", "").replace(",", "");
+    cost.value = editRow.cells[7].innerText.replace("$","").replace(",","");
 }
 
 function deleteEquipment(btn, costVal) {
-    if (!confirm("Delete this equipment?")) return;
+    if(!confirm("Delete this equipment?")) return;
     btn.closest("tr").remove();
     totalAssets--;
     totalInvestment -= costVal;
@@ -312,43 +334,108 @@ function deleteEquipment(btn, costVal) {
 }
 
 function resetForm() {
-    document.querySelectorAll("#equipment input, #equipment select").forEach(el => el.value = "");
+    document.querySelectorAll("#equipment input, #equipment select").forEach(el=>el.value="");
 }
 
-// Update Pending Table (max 7) with Accept/Reject
+// Pending Equipment Functions
 function updatePendingTable() {
     const pendingTable = document.getElementById("pendingTable");
     pendingTable.innerHTML = "";
     const rows = document.getElementById("equipmentTable").rows;
 
-    for (let i = 0; i < rows.length && i < 7; i++) {
+    for(let i=0; i<rows.length && i<7; i++){
         const r = rows[i];
         let status = r.getAttribute("data-status") || "";
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td>${i + 1}</td>
+            <td>${i+1}</td>
             <td>${r.cells[1].innerText}</td>
             <td>${r.cells[3].innerText}</td>
             <td>${r.cells[4].innerText}</td>
             <td>${r.cells[5].innerText}</td>
-            <td>
-                ${status ? status : `
-                    <button class="btn btn-sm btn-success me-1" onclick="setStatus(this, 'Accepted')">Accept</button>
-                    <button class="btn btn-sm btn-danger" onclick="setStatus(this, 'Rejected')">Reject</button>
-                `}
+            <td>${status? status : `
+                <button class="btn btn-sm btn-success me-1" onclick="setStatus(this,'Accepted')">Accept</button>
+                <button class="btn btn-sm btn-danger" onclick="setStatus(this,'Rejected')">Reject</button>`}
             </td>
         `;
         pendingTable.appendChild(tr);
     }
 }
 
-// Set status for pending equipment
-function setStatus(btn, status) {
-    const rowIndex = btn.closest("tr").rowIndex - 1; // adjust for table header
+function setStatus(btn, status){
+    const rowIndex = btn.closest("tr").rowIndex-1;
     const mainRow = document.getElementById("equipmentTable").rows[rowIndex];
     mainRow.setAttribute("data-status", status);
     updatePendingTable();
     console.log(`${mainRow.cells[1].innerText} is ${status}`);
+}
+
+// Staff Functions
+function addStaff(){
+    const team = document.getElementById("teamName").value.trim();
+    const category = document.getElementById("teamCategory").value.trim();
+    const leader = document.getElementById("teamLeader").value.trim();
+    const member = document.getElementById("teamMember").value.trim();
+    const role = document.getElementById("memberRole").value.trim();
+
+    if(!team || !category || !leader || !member || !role){
+        alert("Please fill all staff fields.");
+        return;
+    }
+
+    if(staffEditRow){
+        staffEditRow.cells[1].innerText = team;
+        staffEditRow.cells[2].innerText = category;
+        staffEditRow.cells[3].innerText = leader;
+        staffEditRow.cells[4].innerText = member;
+        staffEditRow.cells[5].innerText = role;
+        staffEditRow = null;
+        resetStaffForm();
+        return;
+    }
+
+    const table = document.getElementById("staffTable");
+    const row = table.insertRow();
+    const index = table.rows.length;
+    row.innerHTML = `
+        <td>${index}</td>
+        <td>${team}</td>
+        <td>${category}</td>
+        <td>${leader}</td>
+        <td>${member}</td>
+        <td>${role}</td>
+        <td>
+            <button class="btn btn-sm btn-warning me-1" onclick="editStaff(this)">Edit</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteStaff(this)">Delete</button>
+        </td>
+    `;
+    resetStaffForm();
+}
+
+function editStaff(btn){
+    staffEditRow = btn.closest("tr");
+    document.getElementById("teamName").value = staffEditRow.cells[1].innerText;
+    document.getElementById("teamCategory").value = staffEditRow.cells[2].innerText;
+    document.getElementById("teamLeader").value = staffEditRow.cells[3].innerText;
+    document.getElementById("teamMember").value = staffEditRow.cells[4].innerText;
+    document.getElementById("memberRole").value = staffEditRow.cells[5].innerText;
+}
+
+function deleteStaff(btn){
+    if(!confirm("Delete this staff entry?")) return;
+    btn.closest("tr").remove();
+    const table = document.getElementById("staffTable");
+    for(let i=0;i<table.rows.length;i++){
+        table.rows[i].cells[0].innerText=i+1;
+    }
+}
+
+function resetStaffForm(){
+    document.getElementById("teamName").value="";
+    document.getElementById("teamCategory").value="";
+    document.getElementById("teamLeader").value="";
+    document.getElementById("teamMember").value="";
+    document.getElementById("memberRole").value="";
 }
 </script>
 
