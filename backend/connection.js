@@ -1,17 +1,17 @@
-// mysql connection module
-const mysql = require('mysql2');
-const config = require('./config');
+// mongo connection module
+const mongoose = require('mongoose');
 
-// Create a connection pool
-const pool = mysql.createPool({
-    host: config.dbHost,
-    user: config.dbUser,
-    password: config.dbPassword,
-    database: config.dbName,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+const connectDB = async () => {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/odoo_hackathon', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('MongoDB connected successfully');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  }
+};
 
-// Export the pool for use in other modules
-module.exports = pool.promise();
+module.exports = connectDB;

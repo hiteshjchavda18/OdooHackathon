@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <link rel="stylesheet" href="/frontend/User_file/styles/userDashboard.css">
+</head>
+
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Company Name</a>
+        <div class="navbar-nav ms-auto">
+            <span class="nav-item nav-link">Email: info@company.com</span>
+            <span class="nav-item nav-link">Phone: +1 (123) 456-7890</span>
+            <span class="nav-item nav-link">Location: New York, NY</span>
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#" class="active" data-page="dashboard">Dashboard</a>
+    <a href="#" data-page="equipment">Add Equipment</a>
+    <a href="#" data-page="assets">Add Assets</a>
+    <a href="#" data-page="staff">Manage Staff</a>
+    <a href="#" data-page="maintenance">Maintenance Calendar</a>
+
+    <div class="logout">
+        <button class="btn btn-danger w-100">Logout</button>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <!-- Dashboard -->
+    <div class="page active" id="dashboard">
+        <h1>Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="metric-box">
+                    <h3>Total Assets Count</h3>
+                    <div class="value">1,250</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric-box">
+                    <h3>Total Investment</h3>
+                    <div class="value">$2,500,000</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="metric-box">
+                    <h3>Monthly Maintenance</h3>
+                    <div class="value">$15,000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Equipment -->
+    <div class="page" id="equipment">
+        <h1>Add Equipment</h1>
+        <form class="w-50">
+            <input type="text" class="form-control mb-3" placeholder="Equipment Name">
+            <input type="number" class="form-control mb-3" placeholder="Cost">
+            <button class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+    <!-- Add Assets -->
+    <div class="page" id="assets">
+        <h1>Add Assets</h1>
+        <p>Asset form goes here...</p>
+    </div>
+
+    <!-- Manage Staff -->
+    <div class="page" id="staff">
+        <h1>Manage Staff</h1>
+        <p>Staff table goes here...</p>
+    </div>
+
+    <!-- Maintenance -->
+    <div class="page" id="maintenance">
+        <h1>Maintenance Calendar</h1>
+        <p>Maintenance calendar here...</p>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const links = document.querySelectorAll(".sidebar a[data-page]");
+    const pages = document.querySelectorAll(".page");
+
+    links.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            links.forEach(l => l.classList.remove("active"));
+            this.classList.add("active");
+
+            const pageId = this.getAttribute("data-page");
+
+            pages.forEach(page => page.classList.remove("active"));
+            document.getElementById(pageId).classList.add("active");
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+/* CSS Variables for easy customization */
+:root {
+    --sidebar-bg: #343a40;
+    --sidebar-link-color: #ffffff;
+    --sidebar-hover-bg: #495057;
+    --main-bg: #ffffff;
+    --metric-box-bg: #f8f9fa;
+    --metric-box-border: #dee2e6;
+    --metric-title-color: #495057;
+    --metric-value-color: #007bff;
+    --sidebar-width: 250px;
+    --navbar-height: 56px; /* Approximate height of Bootstrap navbar */
+    --font-family: Arial, sans-serif;
+}
+
+/* General Body Styles */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-bg);
+    padding-top: var(--navbar-height); /* Account for fixed navbar */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: calc(100vh - var(--navbar-height)); /* Adjust height to start below navbar */
+    width: var(--sidebar-width);
+    position: fixed;
+    top: var(--navbar-height); /* Start below the navbar */
+    left: 0;
+    background-color: var(--sidebar-bg);
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--sidebar-link-color);
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: var(--sidebar-hover-bg);
+}
+
+.sidebar .logout {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 0 15px;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 20px;
+}
+
+/* Metric Box Styles */
+.metric-box {
+    background-color: var(--metric-box-bg);
+    border: 1px solid var(--metric-box-border);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.metric-box:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.metric-box h3 {
+    margin-bottom: 10px;
+    color: var(--metric-title-color);
+}
+
+.metric-box .value {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--metric-value-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    body {
+        padding-top: 0; /* Remove padding on mobile for stacked layout */
+    }
+}
