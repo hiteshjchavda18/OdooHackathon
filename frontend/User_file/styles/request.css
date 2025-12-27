@@ -1,47 +1,77 @@
-/* CSS Variables for easy customization */
+/* ===============================
+   GLOBAL VARIABLES
+================================ */
 :root {
+    /* Layout */
+    --sidebar-width: 250px;
+    --navbar-height: 25px;
+
+    /* Colors */
     --sidebar-bg: #04203b;
     --sidebar-link-color: #ffffff;
     --sidebar-hover-bg: #495057;
-    --main-bg: #ffffff;
-    --metric-box-bg: rgb(47, 109, 181);
-    --metric-box-border: #dee2e6;
-    --metric-title-color: #ffffff;
-    --metric-value-color: #eef07e;
-    --sidebar-width: 250px;
-    --navbar-height: 25px;                                              
+
+    --primary-color: #033b62;
+    --background-color: #ffffff;
+    --card-border-color: #cfd8e3;
+
+    /* Typography */
     --font-family: Arial, sans-serif;
-    
+
+    /* Card */
+    --card-radius: 14px;
+    --card-padding: 32px 36px;
+    --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* General Body Styles */
+/* ===============================
+   BASE
+================================ */
 body {
     font-family: var(--font-family);
     margin: 0;
-    padding: 0;
-    background-color: var(--main-bg);
-    padding-top: var(--navbar-height); /* Account for fixed navbar */
+    background-color: var(--background-color);
+    padding-top: var(--navbar-height);
 }
 
-/* Sidebar Styles */
+/* ===============================
+   NAVBAR
+================================ */
+.navbar {
+    min-height: var(--navbar-height);
+    padding: 0;
+}
+
+.navbar .container-fluid {
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+}
+
+.navbar-brand,
+.navbar .nav-item {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* ===============================
+   SIDEBAR
+================================ */
 .sidebar {
-    height: calc(100vh - var(--navbar-height)); /* Adjust height to start below navbar */
-    width: var(--sidebar-width);
     position: fixed;
-    top: var(--navbar-height); /* Start below the navbar */
+    top: var(--navbar-height);
     left: 0;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height));
     background-color: var(--sidebar-bg);
     padding-top: 70px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar a {
+    display: block;
     padding: 10px 15px;
-    text-decoration: none;
     font-size: 18px;
     color: var(--sidebar-link-color);
-    display: block;
-    transition: background-color 0.3s;
+    text-decoration: none;
 }
 
 .sidebar a:hover {
@@ -54,40 +84,104 @@ body {
     width: 100%;
     padding: 0 15px;
 }
-.navbar .container-fluid {
-   
-    padding-top: 0;
-    padding-bottom: 0;
-    background-color: #033b62;
+
+/* ===============================
+   MAIN CONTENT (CENTER ALIGN)
+================================ */
+.main-content {
+    margin-left: var(--sidebar-width);
+    margin-top: 40px;
+    padding: 30px;
+
+    display: flex;
+    justify-content: center;     /* horizontal center */
+    align-items: flex-start;     /* keep top aligned */
 }
-.navbar .container-fluid .navbar-brand {
+
+/* ===============================
+   REQUEST FORM CARD
+================================ */
+.request-form-box {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #ffffff;
+
+    border: 2px solid var(--card-border-color);
+    border-radius: var(--card-radius);
+    padding: var(--card-padding);
+
+    box-shadow: var(--card-shadow);
+}
+
+.request-form-box h2 {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 28px;
+}
+
+/* ===============================
+   FORM GRID
+================================ */
+.request-form-box form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+/* Labels */
+.request-form-box .form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Inputs */
+.request-form-box .form-control,
+.request-form-box .form-select {
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+/* Maintenance type row */
+.maintenance-type {
+    grid-column: span 3;
+}
+
+/* Submit button row */
+.form-actions {
+    grid-column: span 3;
+    text-align: right;
+    
+}
+.btn{
+    background-color: #dc3545;
+    color: azure;
+}
+.btn:hover{
+    background-color: #bb2d3b;
     color: #ffffff;
-    font-weight: bold;
 }
-.navbar .nav-item{
-    color: #ffffff;
-}
-.navbar {
-    padding-top: 0;
-    padding-bottom: 0;
-    min-height: var(--navbar-height);
-}
-.navbar .container-fluid {
-    padding-top: 20px;
-    padding-bottom: 10px;
-}
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        top: 0;
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 992px) {
+    .request-form-box form {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .main-content {
-        margin-left: 0;
+
+    .maintenance-type,
+    .form-actions {
+        grid-column: span 2;
     }
-    body {
-        padding-top: 0; /* Remove padding on mobile for stacked layout */
+}
+
+@media (max-width: 576px) {
+    .request-form-box form {
+        grid-template-columns: 1fr;
+    }
+
+    .maintenance-type,
+    .form-actions {
+        grid-column: span 1;
     }
 }

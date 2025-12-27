@@ -7,8 +7,6 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
@@ -51,6 +49,10 @@
             border-radius: 12px;
             color: #fff;
         }
+        #pendingTableContainer {
+            max-height: 250px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
@@ -68,7 +70,7 @@
 <div class="sidebar">
     <a href="#" class="active" data-page="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
     <a href="#" data-page="equipment"><i class="bi bi-tools"></i> Add Equipment</a>
-    <a href="#" data-page="assets"><i class="bi bi-box-seam"></i> Assets</a>
+    <!-- <a href="#" data-page="assets"><i class="bi bi-box-seam"></i> Assets</a> -->
     <a href="#" data-page="staff"><i class="bi bi-people"></i> Staff</a>
     <a href="#" data-page="maintenance"><i class="bi bi-calendar-check"></i> Maintenance</a>
 </div>
@@ -99,70 +101,101 @@
                     <h2>$15K</h2>
                 </div>
             </div>
+
+            <!-- Pending Equipment Card -->
+            <div class="col-12">
+                <div class="card p-3">
+                    <h6>Pending Equipment (Max 7)</h6>
+                    <div id="pendingTableContainer">
+                        <table class="table table-sm table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Asset Name</th>
+                                    <th>Category</th>
+                                    <th>Department</th>
+                                    <th>Company</th>
+                                    <th>Status</th> <!-- New Status Column -->
+                                </tr>
+                            </thead>
+                            <tbody id="pendingTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- ADD EQUIPMENT -->
     <div class="page" id="equipment">
-    <h3 class="fw-bold mb-3">Add Equipment</h3>
+        <h3 class="fw-bold mb-3">Add Equipment</h3>
 
-    <!-- FORM -->
-    <div class="card p-4 mb-4">
-        <div class="row g-3">
-            <div class="col-md-4">
-                <input type="text" id="assetName" class="form-control" placeholder="Asset Name">
+        <!-- FORM -->
+        <div class="card p-4 mb-4">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Asset Name <span class="text-danger">*</span></label>
+                    <input type="text" id="assetName" class="form-control" placeholder="Enter asset name" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Purchase Date <span class="text-danger">*</span></label>
+                    <input type="date" id="purchaseDate" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Company Name <span class="text-danger">*</span></label>
+                    <input type="text" id="companyName" class="form-control" placeholder="Enter company name" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Department Name <span class="text-danger">*</span></label>
+                    <input type="text" id="departmentName" class="form-control" placeholder="Enter department" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Serial Number <span class="text-danger">*</span></label>
+                    <input type="text" id="serialNumber" class="form-control" placeholder="Enter serial number" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Category <span class="text-danger">*</span></label>
+                    <select id="category" class="form-select" required>
+                        <option value="">Select category</option>
+                        <option>Laptop</option>
+                        <option>Desktop</option>
+                        <option>Monitor</option>
+                        <option>Printer</option>
+                        <option>Router</option>
+                        <option>Switch</option>
+                        <option>Server</option>
+                        <option>UPS</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Cost <span class="text-danger">*</span></label>
+                    <input type="number" id="cost" class="form-control" placeholder="Enter cost" required>
+                </div>
             </div>
-            <div class="col-md-4">
-                <input type="date" id="purchaseDate" class="form-control">
-            </div>
-            <div class="col-md-4">
-                <input type="text" id="companyName" class="form-control" placeholder="Company Name">
-            </div>
-            <div class="col-md-4">
-                <input type="text" id="departmentName" class="form-control" placeholder="Department Name">
-            </div>
-            <div class="col-md-4">
-                <input type="text" id="serialNumber" class="form-control" placeholder="Serial Number">
-            </div>
-            <div class="col-md-4">
-                <select id="category" class="form-select">
-                    <option value="">Select Category</option>
-                    <option>Laptop</option>
-                    <option>Desktop</option>
-                    <option>Monitor</option>
-                    <option>Printer</option>
-                    <option>Router</option>
-                    <option>Switch</option>
-                    <option>Server</option>
-                    <option>UPS</option>
-                    <option>Other</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <input type="number" id="cost" class="form-control" placeholder="Cost">
-            </div>
+
+            <button class="btn btn-primary mt-4" onclick="addEquipment()">Save Equipment</button>
         </div>
 
-        <button class="btn btn-primary mt-3" onclick="addEquipment()">Save Equipment</button>
+        <!-- TABLE -->
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Asset Name</th>
+                    <th>Serial</th>
+                    <th>Category</th>
+                    <th>Department</th>
+                    <th>Company</th>
+                    <th>Purchase Date</th>
+                    <th>Cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="equipmentTable"></tbody>
+        </table>
     </div>
 
-    <!-- TABLE -->
-    <table class="table table-bordered table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th>#</th>
-                <th>Asset Name</th>
-                <th>Serial</th>
-                <th>Category</th>
-                <th>Department</th>
-                <th>Company</th>
-                <th>Purchase Date</th>
-                <th>Cost</th>
-            </tr>
-        </thead>
-        <tbody id="equipmentTable"></tbody>
-    </table>
-</div>
     <!-- ASSETS -->
     <div class="page" id="assets">
         <h3 class="fw-bold">Assets</h3>
@@ -187,8 +220,9 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    let totalAssets = 0;
+let totalAssets = 0;
 let totalInvestment = 0;
+let editRow = null;
 
 // Sidebar navigation
 document.querySelectorAll(".sidebar a").forEach(link => {
@@ -201,29 +235,40 @@ document.querySelectorAll(".sidebar a").forEach(link => {
     });
 });
 
-// Add Equipment
+// Add / Update Equipment
 function addEquipment() {
-    const asset = assetName.value;
+    const asset = assetName.value.trim();
     const date = purchaseDate.value;
-    const company = companyName.value;
-    const dept = departmentName.value;
-    const serial = serialNumber.value;
+    const company = companyName.value.trim();
+    const dept = departmentName.value.trim();
+    const serial = serialNumber.value.trim();
     const cat = category.value;
     const costVal = parseFloat(cost.value);
 
     if (!asset || !date || !company || !dept || !serial || !cat || costVal <= 0) {
-        alert("Please fill all fields correctly");
+        alert("Please fill all required fields");
+        return;
+    }
+
+    if (editRow) {
+        editRow.cells[1].innerText = asset;
+        editRow.cells[2].innerText = serial;
+        editRow.cells[3].innerText = cat;
+        editRow.cells[4].innerText = dept;
+        editRow.cells[5].innerText = company;
+        editRow.cells[6].innerText = date;
+        editRow.cells[7].innerText = `$${costVal.toLocaleString()}`;
+        editRow = null;
+        resetForm();
+        updatePendingTable();
         return;
     }
 
     totalAssets++;
     totalInvestment += costVal;
 
-    totalAssetsEl = document.getElementById("totalAssets");
-    totalInvestmentEl = document.getElementById("totalInvestment");
-
-    totalAssetsEl.innerText = totalAssets;
-    totalInvestmentEl.innerText = totalInvestment.toLocaleString();
+    document.getElementById("totalAssets").innerText = totalAssets;
+    document.getElementById("totalInvestment").innerText = totalInvestment.toLocaleString();
 
     const row = document.getElementById("equipmentTable").insertRow();
     row.innerHTML = `
@@ -235,9 +280,75 @@ function addEquipment() {
         <td>${company}</td>
         <td>${date}</td>
         <td>$${costVal.toLocaleString()}</td>
+        <td>
+            <button class="btn btn-sm btn-warning me-1" onclick="editEquipment(this)">Edit</button>
+            <button class="btn btn-sm btn-danger" onclick="deleteEquipment(this, ${costVal})">Delete</button>
+        </td>
     `;
 
+    resetForm();
+    updatePendingTable();
+}
+
+function editEquipment(btn) {
+    editRow = btn.closest("tr");
+    assetName.value = editRow.cells[1].innerText;
+    serialNumber.value = editRow.cells[2].innerText;
+    category.value = editRow.cells[3].innerText;
+    departmentName.value = editRow.cells[4].innerText;
+    companyName.value = editRow.cells[5].innerText;
+    purchaseDate.value = editRow.cells[6].innerText;
+    cost.value = editRow.cells[7].innerText.replace("$", "").replace(",", "");
+}
+
+function deleteEquipment(btn, costVal) {
+    if (!confirm("Delete this equipment?")) return;
+    btn.closest("tr").remove();
+    totalAssets--;
+    totalInvestment -= costVal;
+    document.getElementById("totalAssets").innerText = totalAssets;
+    document.getElementById("totalInvestment").innerText = totalInvestment.toLocaleString();
+    updatePendingTable();
+}
+
+function resetForm() {
     document.querySelectorAll("#equipment input, #equipment select").forEach(el => el.value = "");
+}
+
+// Update Pending Table (max 7) with Accept/Reject
+function updatePendingTable() {
+    const pendingTable = document.getElementById("pendingTable");
+    pendingTable.innerHTML = "";
+    const rows = document.getElementById("equipmentTable").rows;
+
+    for (let i = 0; i < rows.length && i < 7; i++) {
+        const r = rows[i];
+        let status = r.getAttribute("data-status") || "";
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${i + 1}</td>
+            <td>${r.cells[1].innerText}</td>
+            <td>${r.cells[3].innerText}</td>
+            <td>${r.cells[4].innerText}</td>
+            <td>${r.cells[5].innerText}</td>
+            <td>
+                ${status ? status : `
+                    <button class="btn btn-sm btn-success me-1" onclick="setStatus(this, 'Accepted')">Accept</button>
+                    <button class="btn btn-sm btn-danger" onclick="setStatus(this, 'Rejected')">Reject</button>
+                `}
+            </td>
+        `;
+        pendingTable.appendChild(tr);
+    }
+}
+
+// Set status for pending equipment
+function setStatus(btn, status) {
+    const rowIndex = btn.closest("tr").rowIndex - 1; // adjust for table header
+    const mainRow = document.getElementById("equipmentTable").rows[rowIndex];
+    mainRow.setAttribute("data-status", status);
+    updatePendingTable();
+    console.log(`${mainRow.cells[1].innerText} is ${status}`);
 }
 </script>
 

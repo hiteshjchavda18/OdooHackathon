@@ -3,39 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gear Guard</title>
+    <title>Maintenance Request</title>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/styles/userDashboard.css">
+    <link rel="stylesheet" href="/styles/request.css">
 </head>
 <body>
-    <!-- Top Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="userDashboard.html">Company Name</a>
-            <div class="navbar-nav ms-auto">
-                <span class="nav-item nav-link">Email: info@company.com</span>
-                <span class="nav-item nav-link">Phone: +1 (123) 456-7890</span>
-                <span class="nav-item nav-link">Location: New York, NY</span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="/dashboard">Dashboard</a>
-        <a href="/dashboard/request">Request</a>
-        <a href="/dashboard/assets">Assets</a>
-        <a href="/dashboard/teams">Teams</a>
-        <a href="/dashboard/maintenance">Maintenance Calendar</a>
-        <div class="logout">
-            <button class="btn btn-danger w-100">Logout</button>
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Company Name</a>
+        <div class="navbar-nav ms-auto">
+            <span class="nav-item nav-link">Email: info@company.com</span>
+            <span class="nav-item nav-link">Phone: +1 (123) 456-7890</span>
+            <span class="nav-item nav-link">Location: New York, NY</span>
+        </div>
+    </div>
+</nav>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/dashboard/request">Request</a>
+    <a href="/dashboard/assets">Assets</a>
+    <a href="/dashboard/teams">Teams</a>
+    <a href="/dashboard/maintenance">Maintenance Calendar</a>
+
+    <div class="logout">
+        <button class="btn btn-danger w-100">Logout</button>
+    </div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="main-content">
+    <div class="request-form-box">
+
+        <h2>Maintenance Request Form</h2>
+
+<form>
+
+    <!-- Subject -->
+    <div class="mb-3">
+        <label class="form-label">Subject</label>
+        <input type="text" class="form-control" placeholder="Enter subject">
+    </div>
+
+    <!-- Created By -->
+    <div class="mb-3">
+        <label class="form-label">Created By</label>
+        <input type="text" class="form-control" placeholder="Admin name">
+    </div>
+
+    <!-- Maintenance For (Equipment) -->
+    <div class="mb-3">
+        <label class="form-label">Equipment</label>
+        <select class="form-select">
+            <option selected disabled>Select equipment</option>
+            <option>Acer Laptop / LP / 203</option>
+            <option>Printer</option>
+            <option>Server</option>
+        </select>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input type="text" class="form-control" placeholder="Computers">
+    </div>
+
+    <!-- Request Date -->
+    <div class="mb-3">
+        <label class="form-label">Request Date</label>
+        <input type="date" class="form-control">
+    </div>
+
+    <!-- Team -->
+    <div class="mb-3">
+        <label class="form-label">Team</label>
+        <input type="text" class="form-control" placeholder="Internal Maintenance">
+    </div>
+
+    <!-- Maintenance Type -->
+    <div class="mb-3 maintenance-type">
+        <label class="form-label">Maintenance Type</label>
+        <div class="d-flex gap-4 mt-1">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="maintenanceType">
+                <label class="form-check-label">Corrective</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="maintenanceType">
+                <label class="form-check-label">Preventive</label>
+            </div>
         </div>
     </div>
 
- 
+    <!-- Technician -->
+    <div class="mb-3">
+        <label class="form-label">Technician</label>
+        <input type="text" class="form-control" placeholder="Technician name">
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scheduled Date & Time -->
+    <div class="mb-3">
+        <label class="form-label">Scheduled Date & Time</label>
+        <input type="datetime-local" class="form-control">
+    </div>
+
+    <!-- Duration -->
+    <div class="mb-3">
+        <label class="form-label">Duration (Hours)</label>
+        <input type="number" class="form-control" placeholder="0.0">
+    </div>
+
+    <!-- Company -->
+    <div class="mb-3">
+        <label class="form-label">Company</label>
+        <input type="text" class="form-control" placeholder="My Company">
+    </div>
+
+    <!-- Status -->
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        <select class="form-select">
+            <option>New</option>
+            <option>In Progress</option>
+            <option>Repaired</option>
+            <option>Scrap</option>
+        </select>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3 description-field">
+        <label class="form-label">Description / Notes</label>
+        <textarea class="form-control" rows="3"
+            placeholder="Describe the maintenance activity"></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save Request</button>
+    </div>
+    <!-- Success Message -->
+<div id="successMessage" class="alert alert-success mt-3 d-none">
+    ✅ Maintenance request sent successfully!
+</div>
+
+</form>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault(); // stop actual submit
+
+    // Get values
+    const subject = document.getElementById("subject").value.trim();
+    const equipment = document.getElementById("equipment").value;
+    const requestDate = document.getElementById("requestDate").value;
+    const description = document.getElementById("description").value.trim();
+
+    // Basic validation
+    if (!subject || !equipment || !requestDate || !description) {
+        alert("❌ Please fill all required fields");
+        return;
+    }
+
+    // Show success message
+    const successMsg = document.getElementById("successMessage");
+    successMsg.classList.remove("d-none");
+
+    // Reset form
+    this.reset();
+
+    // Auto-hide message after 3 seconds
+    setTimeout(() => {
+        successMsg.classList.add("d-none");
+    }, 3000);
+});
+</script>
+
 </body>
 </html>

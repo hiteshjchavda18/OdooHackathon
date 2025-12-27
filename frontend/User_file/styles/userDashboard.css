@@ -3,11 +3,12 @@
     --sidebar-bg: #04203b;
     --sidebar-link-color: #ffffff;
     --sidebar-hover-bg: #495057;
-    --main-bg: #152042;
-    --metric-box-bg: #e8f1fa;
+    --main-bg: #ffffff;
+    --metric-box-bg: rgb(16, 45, 78);
     --metric-box-border: #dee2e6;
-    --metric-title-color: #cfcaca;
-    --metric-value-color: #0c9f18;
+    --metric-title-color: #ffffff;
+    --metric-value-color: #1cc22a;
+    --metric-value1-color: #c32222;
     --sidebar-width: 250px;
     --navbar-height: 25px;                                              
     --font-family: Arial, sans-serif;
@@ -19,7 +20,6 @@ body {
     font-family: var(--font-family);
     margin: 0;
     padding: 0;
-    color: #dee2e6;
     background-color: var(--main-bg);
     padding-top: var(--navbar-height); /* Account for fixed navbar */
 }
@@ -89,13 +89,16 @@ body {
     font-weight: bold;
     color: var(--metric-value-color);
 }
+.value1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--metric-value1-color);
+}
 .navbar .container-fluid {
    
     padding-top: 0;
     padding-bottom: 0;
-    /* background-color: #033b62; */
-    /* background-color: #eaeff2; */
-    background-color: #011a29;
+    background-color: #033b62;
 }
 .navbar .container-fluid .navbar-brand {
     color: #ffffff;

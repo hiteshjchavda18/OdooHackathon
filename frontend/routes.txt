@@ -1,0 +1,19 @@
+*** User URLs ***
+
+http://localhost:8080/dashboard
+
+http://localhost:8080/dashboard/request
+
+http://localhost:8080/dashboard/assets
+
+http://localhost:8080/dashboard/teams
+
+http://localhost:8080/dashboard/maintenance
+
+
+*** Admin URLs ***
+
+http://localhost:8080/admin
+
+
+https://app.excalidraw.com/l/65VNwvy7c4X/5y5Qt87q1Qp
