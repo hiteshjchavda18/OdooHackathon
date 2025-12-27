@@ -29,6 +29,8 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(frontendPath, 'Admin_file', 'admin-dashboard.html'));
 });
 
+app.get('/admin/')
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

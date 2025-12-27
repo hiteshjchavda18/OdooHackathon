@@ -4,12 +4,12 @@
     --sidebar-link-color: #ffffff;
     --sidebar-hover-bg: #495057;
     --main-bg: #ffffff;
-    --metric-box-bg: #375475;
+    --metric-box-bg: rgb(47, 109, 181);
     --metric-box-border: #dee2e6;
     --metric-title-color: #ffffff;
     --metric-value-color: #eef07e;
     --sidebar-width: 250px;
-    --navbar-height: 25px; /* Approximate height of Bootstrap navbar */
+    --navbar-height: 25px;                                              
     --font-family: Arial, sans-serif;
     
 }
@@ -57,7 +57,7 @@ body {
 
 /* Main Content Styles */
 .main-content {
-    margin-left: var(--sidebar-width);YYYYYYY
+    margin-left: var(--sidebar-width);
     padding: 30px;
 }
 
@@ -91,7 +91,7 @@ body {
    
     padding-top: 0;
     padding-bottom: 0;
-    background-color: #04203b;
+    background-color: #033b62;
 }
 .navbar .container-fluid .navbar-brand {
     color: #ffffff;
